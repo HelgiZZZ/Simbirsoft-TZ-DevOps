@@ -16,10 +16,10 @@
 ### Тестовое задание №1: Запуск контейнера Docker
 #### Создаем image:
 
-`cd /TZ1 && \ docker build .`
+`cd TZ1 && \ docker build .`
 
 #### Находим IMAGE ID:
-`docker ps`
+`docker image ls`
 
 #### Выполняем запуск контейнера:
 `docker run -it -d -p 8000:5000 "IMAGE ID"`
