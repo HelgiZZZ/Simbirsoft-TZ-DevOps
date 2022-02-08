@@ -1,0 +1,42 @@
+- name: Ansible Test
+  hosts: localhost
+  connection: local
+  become: yes
+
+
+  tasks:
+
+    - name: Update and upgrade
+      become: yes
+      apt:
+        update_cache: yes
+        upgrade: yes
+
+    - name: Create directory
+      file:
+       path=src
+       state=directory
+
+    - name: Install pakages
+      apt:
+        update_cache: yes
+        pkg:
+          - git
+          - python-pip
+        state: present
+
+    - name: Clone a git repository
+      git:
+        repo: https://github.com/anfederico/Flaskex
+        dest: src/
+        clone: yes
+        update: yes
+
+    - name: Install python package
+      command: "pip install -r src/requirements.txt"
+
+
+    - name: Run a command python
+      command: "python src/app.py"
+
+
